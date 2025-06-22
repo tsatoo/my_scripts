@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# DB設定
 DB_NAME="test_db"
 DB_USER="test_user"
 CONTAINER_NAME="psql"
@@ -19,9 +20,9 @@ fi
 
 # dump出力
 docker exec "$CONTAINER_NAME" pg_dump -U "$DB_USER" "$DB_NAME" > "$OUTPUT_DIR/$FILENAME"
+RESULT=$?
 
 # 結果表示
-RESULT=$?
 if [ $RESULT -eq 0 ]; then
     echo "Dumped: $OUTPUT_DIR/$FILENAME"
 else
